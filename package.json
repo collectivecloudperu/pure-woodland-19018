@@ -1,0 +1,16 @@
+{
+  "name": "facebook_bot",
+  "version": "1.0.0",
+  "description": "Facebook Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "index"
+  },
+  "author": "@pepoflex",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "request": "^2.72.0"
+  }
+}
