@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
-    res.send('Hola, soy un Bot de Facebook Messenger, cual estu pregunta ?')
+    res.send('Hola, soy un Bot de Facebook Messenger, cual es tu pregunta ?')
 })
 
 // for Facebook verification
