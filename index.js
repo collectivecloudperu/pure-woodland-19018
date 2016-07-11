@@ -79,7 +79,7 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "This is what I found for "+query,
+          text: "Buscar "+query,
           buttons:[{
             type: "web_url",
             url: "https://platzi.com/blog/?s="+query,
@@ -120,7 +120,7 @@ function introResponse(recipientId, text) {
     //split text into words for conditional responses
     //var values = text.split(" ");
     var what = text.match(/what/gi);
-    var platzi = text.match(/platzi/gi);
+    var beebom = text.match(/beebom/gi);
     var who = text.match(/who/gi);
     var you = text.match(/you/gi);
     var suggest = text.match(/suggest/gi);
@@ -129,7 +129,7 @@ function introResponse(recipientId, text) {
     var iphone = text.match(/iphone/gi);
     var android = text.match(/android/gi);
 
-    if(what != null && platzi != null) {
+    if(what != null && beebom != null) {
         message = {
             text: "Platzi es la mejor plataforma de habla hispana con Cursos profesionales de desarrollo web y de apps, marketing online, diseño de interfaces, servidores. Con clases en vivo y profesores sabios de la industria. Bienvenido :)."
         }
