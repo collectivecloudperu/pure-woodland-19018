@@ -1,66 +1,166 @@
-var express = require('express')
-var bodyParser = require('body-parser')
-var request = require('request')
-var app = express()
+var express = require('express');
+var bodyParser = require('body-parser');
+var request = require('request');
+var app = express();
 
-app.set('port', (process.env.PORT || 8080))
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.listen((process.env.PORT || 8080));
 
-// Process application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
-
-// Process application/json
-app.use(bodyParser.json())
-
-// Index route
+// Server frontpage
 app.get('/', function (req, res) {
-    res.send('Hola, soy un Bot de Facebook Messenger, cual es tu pregunta ?')
-})
+    res.send('This is TestBot Server');
+});
 
-// for Facebook verification
-app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-        res.send(req.query['hub.challenge'])
+// Facebook Webhook
+app.get('/webhook', function (req, res) {
+    if (req.query['hub.verify_token'] === 'testbot_verify_token') {
+        res.send(req.query['hub.challenge']);
+    } else {
+        res.send('Invalid verify token');
     }
-    res.send('Error, wrong token')
-})
+});
 
-// Spin up the server
-app.listen(app.get('port'), function() {
-    console.log('running on port', app.get('port'))
-})
-
-app.post('/webhook/', function (req, res) {
-    messaging_events = req.body.entry[0].messaging
-    for (i = 0; i < messaging_events.length; i++) {
-        event = req.body.entry[0].messaging[i]
-        sender = event.sender.id
+// handler receiving messages
+app.post('/webhook', function (req, res) {
+    var events = req.body.entry[0].messaging;
+    for (i = 0; i < events.length; i++) {
+        var event = events[i];
         if (event.message && event.message.text) {
-            text = event.message.text
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            if(introResponse(event.sender.id, event.message.text)) {
+                res.sendStatus(200);
+            }
+            else if(newResponse(event.sender.id, event.message.text)) {
+                res.sendStatus(200);
+            }
+            else {
+              //replace echo with valid command list
+                sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+            }
         }
     }
-    res.sendStatus(200)
-})
+    res.sendStatus(200);
+});
 
-var token = "EAACaXIw3GKUBAKwg8QKXgAfZCBu9TRtv1WZA3Ic8LEFaGZBUItyhq6Up4ArQeDMLK5k0U2HRWQZATZCeefiyYYGZB6VbUUYbZBmuHbEonONzZAZA6phcvmmpYdFqYvvkFMlmcXmtLqJErwII2CFk190Y79OpjQkTpMymR0I2aL3DftwZDZD"
+function newResponse(recipientId, text) {
+    text = text || "";
+    var suggest = text.match(/suggest/gi);
+    var random = text.match(/random/gi);
+    var article = text.match(/article/gi);
+    var iphone = text.match(/iphone/gi);
+    var android = text.match(/android/gi);
+    var mac = text.match(/mac/gi);
+    var browser = text.match(/browser/gi);
+    var vpn = text.match(/vpn/gi);
+    if(suggest != null && article != null) {
+        var query = "";
 
-function sendTextMessage(sender, text) {
-    messageData = {
-        text:text
+        //sendMessage(recipientId, message);
+        if(android != null) {
+            query = "Android";
+        } else if (mac != null) {
+            query = "Mac";
+        } else if (iphone != null) {
+            query = "iPhone";
+        }
+        sendButtonMessage(recipientId, query);
+        return true
     }
+    return false;
+};
+
+function sendButtonMessage(recipientId, query) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "This is what I found for "+query,
+          buttons:[{
+            type: "web_url",
+            url: "http://www.beebom.com/?s="+query,
+            title: "Beebom: " + query
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+
+function callSendAPI(messageData) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+    method: 'POST',
+    json: messageData
+
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      console.log("Successfully sent generic message with id %s to recipient %s", 
+        messageId, recipientId);
+    } else {
+      console.error("Unable to send message.");
+      console.error(response);
+      console.error(error);
+    }
+  });  
+}
+
+function introResponse(recipientId, text) {
+    text = text || "";
+    //split text into words for conditional responses
+    //var values = text.split(" ");
+    var what = text.match(/what/gi);
+    var beebom = text.match(/beebom/gi);
+    var who = text.match(/who/gi);
+    var you = text.match(/you/gi);
+    var suggest = text.match(/suggest/gi);
+    var random = text.match(/random/gi);
+    var article = text.match(/article/gi);
+    var iphone = text.match(/iphone/gi);
+    var android = text.match(/android/gi);
+
+    if(what != null && beebom != null) {
+        message = {
+            text: "Beebom is a website offering tech resources. Welcome."
+        }
+        sendMessage(recipientId, message);
+        return true;
+    }
+    if(who != null && you != null) {
+        message = {
+            text: "I have been asked not to discuss my identity online."
+        }
+        sendMessage(recipientId, message);
+        return true;
+    }
+    return false;
+};
+
+// generic function sending messages
+function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
+        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: 'POST',
         json: {
-            recipient: {id:sender},
-            message: messageData,
+            recipient: {id: recipientId},
+            message: message,
         }
     }, function(error, response, body) {
         if (error) {
-            console.log('Error sending messages: ', error)
+            console.log('Error sending message: ', error);
         } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
+            console.log('Error: ', response.body.error);
         }
-    })
-}
+    });
+};
