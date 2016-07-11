@@ -44,15 +44,15 @@ app.post('/webhook', function (req, res) {
 
 function newResponse(recipientId, text) {
     text = text || "";
-    var suggest = text.match(/suggest/gi);
+    var buscar = text.match(/buscar/gi);
     var random = text.match(/random/gi);
-    var article = text.match(/article/gi);
+    var articulo = text.match(/articulo/gi);
     var iphone = text.match(/iphone/gi);
     var android = text.match(/android/gi);
     var mac = text.match(/mac/gi);
     var browser = text.match(/browser/gi);
     var vpn = text.match(/vpn/gi);
-    if(suggest != null && article != null) {
+    if(buscar != null && articulo != null) {
         var query = "";
 
         //sendMessage(recipientId, message);
@@ -123,9 +123,9 @@ function introResponse(recipientId, text) {
     var platzi = text.match(/platzi/gi);
     var who = text.match(/who/gi);
     var you = text.match(/you/gi);
-    var suggest = text.match(/suggest/gi);
+    var buscar = text.match(/buscar/gi);
     var random = text.match(/random/gi);
-    var article = text.match(/article/gi);
+    var articulo = text.match(/articulo/gi);
     var iphone = text.match(/iphone/gi);
     var android = text.match(/android/gi);
 
