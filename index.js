@@ -128,7 +128,6 @@ function introResponse(recipientId, text) {
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
-    var bot = text.match(/bot/gi);
     var buscar = text.match(/buscar/gi);
     var ux = text.match(/ux/gi);
     var blog = text.match(/blog/gi);
@@ -142,9 +141,9 @@ function introResponse(recipientId, text) {
         sendMessage(recipientId, message);
         return true;
     }
-    if(ayuda != null && bot != null) {
+    if(ayuda != null) {
         message = {
-            text: "Soy un bot de Facebook Messenger. Comandos disponibles: 1)Buscar blog Javascript, etc. 2)Sobre Platzi. 3)Ayuda Bot "
+            text: "Soy un bot de Facebook Messenger. Comandos disponibles: 1)Buscar blog Javascript, etc. 2)Sobre Platzi. 3)Ayuda."
         }
         sendMessage(recipientId, message);
         return true;
