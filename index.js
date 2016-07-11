@@ -45,13 +45,13 @@ app.post('/webhook', function (req, res) {
 function newResponse(recipientId, text) {
     text = text || "";
     var buscar = text.match(/buscar/gi);
-    var random = text.match(/random/gi);
+    var ux = text.match(/ux/gi);
     var articulo = text.match(/articulo/gi);
     var php = text.match(/php/gi);
     var android = text.match(/android/gi);
     var javascript = text.match(/javascript/gi);
-    var browser = text.match(/browser/gi);
-    var vpn = text.match(/vpn/gi);
+    var python = text.match(/python/gi);
+    var ruby = text.match(/ruby/gi);
     if(buscar != null && articulo != null) {
         var query = "";
 
@@ -62,6 +62,12 @@ function newResponse(recipientId, text) {
             query = "Javascript";
         } else if (php != null) {
             query = "PHP";
+        } else if (ux != null) {
+            query = "UX";
+        } else if (python != null) {
+            query = "Python";
+        } else if (ruby != null) {
+            query = "Ruby";
         }
         sendButtonMessage(recipientId, query);
         return true
@@ -105,10 +111,10 @@ function callSendAPI(messageData) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
 
-      console.log("Successfully sent generic message with id %s to recipient %s", 
+      console.log("Se ha enviado el mensaje generado con id %s a %s", 
         messageId, recipientId);
     } else {
-      console.error("Unable to send message.");
+      console.error("No se puede enviar mensajes.");
       console.error(response);
       console.error(error);
     }
@@ -121,10 +127,10 @@ function introResponse(recipientId, text) {
     //var values = text.split(" ");
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
-    var who = text.match(/who/gi);
-    var you = text.match(/you/gi);
+    var ayuda = text.match(/ayuda/gi);
+    var bot = text.match(/bot/gi);
     var buscar = text.match(/buscar/gi);
-    var random = text.match(/random/gi);
+    var ux = text.match(/ux/gi);
     var articulo = text.match(/articulo/gi);
     var php = text.match(/php/gi);
     var android = text.match(/android/gi);
@@ -136,9 +142,9 @@ function introResponse(recipientId, text) {
         sendMessage(recipientId, message);
         return true;
     }
-    if(who != null && you != null) {
+    if(ayuda != null && bot != null) {
         message = {
-            text: "I have been asked not to discuss my identity online."
+            text: "Soy un bot de Facebook Messenger. Comandos disponibles: 1)Buscar articulos sobre Javascript, etc. 2)Sobre Platzi. 3)Ayuda Bot "
         }
         sendMessage(recipientId, message);
         return true;
@@ -158,7 +164,7 @@ function sendMessage(recipientId, message) {
         }
     }, function(error, response, body) {
         if (error) {
-            console.log('Error sending message: ', error);
+            console.log('Error enviando el Mensaje: ', error);
         } else if (response.body.error) {
             console.log('Error: ', response.body.error);
         }
