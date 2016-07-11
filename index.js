@@ -46,13 +46,13 @@ function newResponse(recipientId, text) {
     text = text || "";
     var buscar = text.match(/buscar/gi);
     var ux = text.match(/ux/gi);
-    var articulo = text.match(/articulo/gi);
+    var blog = text.match(/blog/gi);
     var php = text.match(/php/gi);
     var android = text.match(/android/gi);
     var javascript = text.match(/javascript/gi);
     var python = text.match(/python/gi);
     var ruby = text.match(/ruby/gi);
-    if(buscar != null && articulo != null) {
+    if(buscar != null && blog != null) {
         var query = "";
 
         //sendMessage(recipientId, message);
@@ -131,7 +131,7 @@ function introResponse(recipientId, text) {
     var bot = text.match(/bot/gi);
     var buscar = text.match(/buscar/gi);
     var ux = text.match(/ux/gi);
-    var articulo = text.match(/articulo/gi);
+    var blog = text.match(/blog/gi);
     var php = text.match(/php/gi);
     var android = text.match(/android/gi);
 
@@ -144,7 +144,7 @@ function introResponse(recipientId, text) {
     }
     if(ayuda != null && bot != null) {
         message = {
-            text: "Soy un bot de Facebook Messenger. Comandos disponibles: 1)Buscar articulos sobre Javascript, etc. 2)Sobre Platzi. 3)Ayuda Bot "
+            text: "Soy un bot de Facebook Messenger. Comandos disponibles: 1)Buscar blog Javascript, etc. 2)Sobre Platzi. 3)Ayuda Bot "
         }
         sendMessage(recipientId, message);
         return true;
