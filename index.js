@@ -82,7 +82,7 @@ function sendButtonMessage(recipientId, query) {
           text: "This is what I found for "+query,
           buttons:[{
             type: "web_url",
-            url: "http://www.beebom.com/?s="+query,
+            url: "https://platzi.com/blog/?s="+query,
             title: "Beebom: " + query
           }]
         }
