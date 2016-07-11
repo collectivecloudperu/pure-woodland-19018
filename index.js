@@ -47,9 +47,9 @@ function newResponse(recipientId, text) {
     var buscar = text.match(/buscar/gi);
     var random = text.match(/random/gi);
     var articulo = text.match(/articulo/gi);
-    var iphone = text.match(/iphone/gi);
+    var php = text.match(/php/gi);
     var android = text.match(/android/gi);
-    var mac = text.match(/mac/gi);
+    var javascript = text.match(/javascript/gi);
     var browser = text.match(/browser/gi);
     var vpn = text.match(/vpn/gi);
     if(buscar != null && articulo != null) {
@@ -58,10 +58,10 @@ function newResponse(recipientId, text) {
         //sendMessage(recipientId, message);
         if(android != null) {
             query = "Android";
-        } else if (mac != null) {
-            query = "Mac";
-        } else if (iphone != null) {
-            query = "iPhone";
+        } else if (javascript != null) {
+            query = "Javascript";
+        } else if (php != null) {
+            query = "PHP";
         }
         sendButtonMessage(recipientId, query);
         return true
@@ -126,7 +126,7 @@ function introResponse(recipientId, text) {
     var buscar = text.match(/buscar/gi);
     var random = text.match(/random/gi);
     var articulo = text.match(/articulo/gi);
-    var iphone = text.match(/iphone/gi);
+    var php = text.match(/php/gi);
     var android = text.match(/android/gi);
 
     if(sobre != null && platzi != null) {
