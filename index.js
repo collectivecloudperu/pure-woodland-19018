@@ -79,11 +79,11 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "This is what I found for "+query,
+          text: "Resultados de tu búsqueda: "+query,
           buttons:[{
             type: "web_url",
             url: "https://platzi.com/blog/?s="+query,
-            title: "Beebom: " + query
+            title: "Platzi: " + query
           }]
         }
       }
@@ -120,7 +120,7 @@ function introResponse(recipientId, text) {
     //split text into words for conditional responses
     //var values = text.split(" ");
     var what = text.match(/what/gi);
-    var beebom = text.match(/beebom/gi);
+    var platzi = text.match(/platzi/gi);
     var who = text.match(/who/gi);
     var you = text.match(/you/gi);
     var suggest = text.match(/suggest/gi);
@@ -129,9 +129,9 @@ function introResponse(recipientId, text) {
     var iphone = text.match(/iphone/gi);
     var android = text.match(/android/gi);
 
-    if(what != null && beebom != null) {
+    if(what != null && platzi != null) {
         message = {
-            text: "Beebom is a website offering tech resources. Welcome."
+            text: "Platzi es la mejor plataforma de habla hispana con Cursos profesionales de desarrollo web y de apps, marketing online, diseño de interfaces, servidores. Con clases en vivo y profesores sabios de la industria. Bienvenido :)."
         }
         sendMessage(recipientId, message);
         return true;
