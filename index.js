@@ -143,7 +143,7 @@ function introResponse(recipientId, text) {
     }
     if(ayuda != null) {
         message = {
-            text: "Platzi Bot Ver. 1.0. Comandos disponibles:"\n"1)Buscar blog Javascript, etc.(Puedes buscar Android, Javascript, PHP, UX, Python, Ruby)"\n"2)Sobre Platzi."\n"3)Ayuda."
+            text: "Platzi Bot Ver. 1.0. Comandos disponibles:" + \n + "1)Buscar blog Javascript, etc.(Puedes buscar Android, Javascript, PHP, UX, Python, Ruby)" + \n + "2)Sobre Platzi." + \n + "3)Ayuda."
         }
         sendMessage(recipientId, message);
         return true;
