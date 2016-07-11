@@ -9,7 +9,7 @@ app.listen((process.env.PORT || 8080));
 
 // Server frontpage
 app.get('/', function (req, res) {
-    res.send('This is TestBot Server');
+    res.send('Hola soy un Bot de Facebook Messenger :)');
 });
 
 // Facebook Webhook
@@ -17,7 +17,7 @@ app.get('/webhook', function (req, res) {
     if (req.query['hub.verify_token'] === 'testbot_verify_token') {
         res.send(req.query['hub.challenge']);
     } else {
-        res.send('Invalid verify token');
+        res.send('Token de seguridad inválido');
     }
 });
 
@@ -79,7 +79,7 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Resultados de tu búsqueda: "+query,
+          text: "Resultados de: "+query":",
           buttons:[{
             type: "web_url",
             url: "https://platzi.com/blog/?s="+query,
