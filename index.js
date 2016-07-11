@@ -9,7 +9,7 @@ app.listen((process.env.PORT || 8080));
 
 // Server frontpage
 app.get('/', function (req, res) {
-    res.send('Hola soy un Bot de Facebook Messenger :)');
+    res.send('This is TestBot Server');
 });
 
 // Facebook Webhook
@@ -17,7 +17,7 @@ app.get('/webhook', function (req, res) {
     if (req.query['hub.verify_token'] === 'testbot_verify_token') {
         res.send(req.query['hub.challenge']);
     } else {
-        res.send('Toke de Seguridad Inválido');
+        res.send('Invalid verify token');
     }
 });
 
@@ -79,11 +79,11 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Buscar "+query,
+          text: "This is what I found for "+query,
           buttons:[{
             type: "web_url",
             url: "https://platzi.com/blog/?s="+query,
-            title: "Platzi: " + query
+            title: "Beebom: " + query
           }]
         }
       }
@@ -105,10 +105,10 @@ function callSendAPI(messageData) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
 
-      console.log("Se ha enviado correctamente el mensaje generado con %s a %s", 
+      console.log("Successfully sent generic message with id %s to recipient %s", 
         messageId, recipientId);
     } else {
-      console.error("No se pueden enviar mensajes.");
+      console.error("Unable to send message.");
       console.error(response);
       console.error(error);
     }
@@ -131,14 +131,14 @@ function introResponse(recipientId, text) {
 
     if(what != null && beebom != null) {
         message = {
-            text: "Platzi es la mejor plataforma de habla hispana con Cursos profesionales de desarrollo web y de apps, marketing online, diseño de interfaces, servidores. Con clases en vivo y profesores sabios de la industria. Bienvenido :)."
+            text: "Beebom is a website offering tech resources. Welcome."
         }
         sendMessage(recipientId, message);
         return true;
     }
     if(who != null && you != null) {
         message = {
-            text: "No se me autorizó hablar de mi identidad en línea."
+            text: "I have been asked not to discuss my identity online."
         }
         sendMessage(recipientId, message);
         return true;
@@ -158,7 +158,7 @@ function sendMessage(recipientId, message) {
         }
     }, function(error, response, body) {
         if (error) {
-            console.log('Error enviando mensaje: ', error);
+            console.log('Error sending message: ', error);
         } else if (response.body.error) {
             console.log('Error: ', response.body.error);
         }
