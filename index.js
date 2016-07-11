@@ -143,7 +143,7 @@ function introResponse(recipientId, text) {
     }
     if(ayuda != null) {
         message = {
-            text: "Soy un bot de Facebook Messenger. Comandos disponibles: 1)Buscar blog Javascript, etc. 2)Sobre Platzi. 3)Ayuda."
+            text: "Platzi Bot Ver. 1.0. Comandos disponibles: 1)Buscar blog Javascript, etc. 2)Sobre Platzi. 3)Ayuda."
         }
         sendMessage(recipientId, message);
         return true;
