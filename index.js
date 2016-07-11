@@ -119,7 +119,7 @@ function introResponse(recipientId, text) {
     text = text || "";
     //split text into words for conditional responses
     //var values = text.split(" ");
-    var what = text.match(/what/gi);
+    var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var who = text.match(/who/gi);
     var you = text.match(/you/gi);
@@ -129,7 +129,7 @@ function introResponse(recipientId, text) {
     var iphone = text.match(/iphone/gi);
     var android = text.match(/android/gi);
 
-    if(what != null && platzi != null) {
+    if(sobre != null && platzi != null) {
         message = {
             text: "Platzi es la mejor plataforma de habla hispana con Cursos profesionales de desarrollo web y de apps, marketing online, diseño de interfaces, servidores. Con clases en vivo y profesores sabios de la industria. Bienvenido :)."
         }
