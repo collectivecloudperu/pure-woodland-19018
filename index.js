@@ -45,7 +45,6 @@ app.post('/webhook', function (req, res) {
 function newResponse(recipientId, text) {
     text = text || "";
     var buscar = text.match(/buscar/gi);
-    var buscar = text.match(/buscar/gi);
     var ux = text.match(/ux/gi);
     var blog = text.match(/blog/gi);
     var php = text.match(/php/gi);
