@@ -79,7 +79,7 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Buscar "+query,
+          text: "This is what I found for "+query,
           buttons:[{
             type: "web_url",
             url: "https://platzi.com/blog/?s="+query,
