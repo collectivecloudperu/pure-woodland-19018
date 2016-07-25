@@ -56,7 +56,7 @@ function newResponse(recipientId, text) {
 
         //sendMessage(recipientId, message);
         if(xtxt != null) {
-            query = xtxt;
+            query = " "+ xtxt +" ";
         } 
         sendButtonMessage(recipientId, query);
         return true
