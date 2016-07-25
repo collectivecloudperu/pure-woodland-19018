@@ -90,7 +90,7 @@ function sendButtonMessage(recipientId, query) {
           buttons:[{
             type: "web_url",
             url: "https://platzi.com/blog/?s="+query,
-            title: "Platzi Blog: "\n + query
+            title: "Platzi Blog: "+ "\n" + query
           }]
         }
       }
