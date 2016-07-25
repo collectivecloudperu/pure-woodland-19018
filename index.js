@@ -72,7 +72,7 @@ function newResponse(recipientId, text) {
         } else if (ruby != null) {
             query = "Ruby";
         } else if (xtxt != null) {
-            query = text;
+            query = text || "";
         }
         sendButtonMessage(recipientId, query);
         return true
