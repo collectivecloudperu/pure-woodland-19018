@@ -43,7 +43,7 @@ app.post('/webhook', function (req, res) {
 });
 
 // Defino las palabras que puede usar el usuario dentro del Messenger para el comando 'busca blog' , ejemplo: 'buscar blog javascript'
-function newResponse(recipientId, text) {
+function newResponse(recipientId, txt) {
     txt = text || "";
     var buscar = txt.match(/buscar/gi);
     var ux = txt.match(/ux/gi);
