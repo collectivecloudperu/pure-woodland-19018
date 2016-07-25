@@ -43,7 +43,7 @@ app.post('/webhook', function (req, res) {
 });
 
 // Defino las palabras que puede usar el usuario dentro del Messenger para el comando 'busca blog' , ejemplo: 'buscar blog javascript'
-function newResponse(recipientId, txt) {
+function newResponselnk(recipientId, text) {
     txt = text || "";
     var buscar = txt.match(/buscar/gi);
     var ux = txt.match(/ux/gi);
@@ -77,7 +77,7 @@ function newResponse(recipientId, txt) {
 };
 
 // Muestro un Boton el cual es un link al Blog de Platzi con los resultados obtenidos
-function sendButtonMessage(recipientId, txt_query) {
+function sendButtonMessagelnk(recipientId, txt_query) {
   var messageData = {
     recipient: {
       id: recipientId
