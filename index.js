@@ -85,7 +85,7 @@ function sendButtonMessage(recipientId, query) {
       attachment: {
         type: "template",
         payload: {
-          template_type: "button",
+          template_type: "generic",
           text: "Resultados de "+query+":",
           buttons:[{
             type: "web_url",
