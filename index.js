@@ -44,16 +44,31 @@ app.post('/webhook', function (req, res) {
 });
 
 function newResponse(recipientId, text) {
-    xtext = text || "";
-
-    var xtxt = xtext.match(/xtxt/gi);
-
+    text = text || "";
+    var buscar = text.match(/buscar/gi);
+    var ux = text.match(/ux/gi);
+    var blog = text.match(/blog/gi);
+    var php = text.match(/php/gi);
+    var android = text.match(/android/gi);
+    var javascript = text.match(/javascript/gi);
+    var python = text.match(/python/gi);
+    var ruby = text.match(/ruby/gi);
     if(buscar != null && blog != null) {
         var query = "";
 
         //sendMessage(recipientId, message);
-        if(xtxt != null) {
-            query = "Resultados";
+        if(android != null) {
+            query = "Android";
+        } else if (javascript != null) {
+            query = "Javascript";
+        } else if (php != null) {
+            query = "PHP";
+        } else if (ux != null) {
+            query = "UX";
+        } else if (python != null) {
+            query = "Python";
+        } else if (ruby != null) {
+            query = "Ruby";
         }
         sendButtonMessage(recipientId, query);
         return true
