@@ -30,6 +30,9 @@ app.post('/webhook', function (req, res) {
             if(introResponse(event.sender.id, event.message.text)) {
                 res.sendStatus(200);
             }
+            else if(newResponselnk(event.sender.id, event.message.text)) {
+                res.sendStatus(200);
+            }
             else if(newResponse(event.sender.id, event.message.text)) {
                 res.sendStatus(200);
             }
@@ -43,7 +46,7 @@ app.post('/webhook', function (req, res) {
 });
 
 // Defino las palabras que puede usar el usuario dentro del Messenger para el comando 'busca blog' , ejemplo: 'buscar blog javascript'
-function newResponse(recipientId, text) {
+function newResponselnk(recipientId, text) {
     text = text || "";
     var buscar = text.match(/buscar/gi);
     var ux = text.match(/ux/gi);
@@ -70,14 +73,14 @@ function newResponse(recipientId, text) {
         } else if (ruby != null) {
             query = "Ruby";
         }
-        sendButtonMessage(recipientId, query);
+        sendButtonMessagelnk(recipientId, query);
         return true
     }
     return false;
 };
 
 // Muestro un Boton el cual es un link al Blog de Platzi con los resultados obtenidos
-function sendButtonMessage(recipientId, query) {
+function sendButtonMessagelnk(recipientId, query) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -153,7 +156,7 @@ function introResponse(recipientId, text) {
 
 
 // Defino el comando 'testimonios'
-function newResLnk(recipientId, text) {
+function newResponse(recipientId, text) {
     text = text || "";
     var testimonios = text.match(/testimonios/gi);
 
@@ -171,7 +174,7 @@ function newResLnk(recipientId, text) {
 };
 
 // Muestro los los wildcards con los 'testimonios'
-function sendButMsge(recipientId, query) {
+function sendButtonMessage(recipientId, query) {
   var messageData = {
     recipient: {
       id: recipientId
