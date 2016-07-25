@@ -124,13 +124,14 @@ function callSendAPI(messageData) {
   });  
 }
 
-// Defino las respuestas para los comandos 'sobre platzi' y 'ayuda'
+// Defino las respuestas para los comandos 'sobre platzi', 'ayuda', 'testimonios'
 function introResponse(recipientId, text) {
     text = text || "";
 
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
+    var testimonios = testimonios.text.match(/testimonios/gi);
 
     if(sobre != null && platzi != null) {
         message = {
@@ -142,6 +143,13 @@ function introResponse(recipientId, text) {
     if(ayuda != null) {
         message = {
             text: "Platzi Bot Ver. 1.0 "+ "\n" +" Comandos disponibles: "+ "\n" +" 1)Buscar blog Javascript, etc.(Puedes buscar Android, Javascript, PHP, UX, Python, Ruby) "+ "\n" +" 2)Sobre Platzi. "+ "\n" +" 3)Ayuda."
+        }
+        sendMessage(recipientId, message);
+        return true;
+    }
+    if(testimonios != null) {
+        message = {
+            text: "https://platzi.com/historias/"
         }
         sendMessage(recipientId, message);
         return true;
