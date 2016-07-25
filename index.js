@@ -44,20 +44,17 @@ app.post('/webhook', function (req, res) {
 });
 
 function newResponse(recipientId, text) {
-    xtxt = text || "";
-    var buscar = text.match(/buscar/gi);
-   
-    var blog = text.match(/blog/gi);
+    xtext = text || "";
 
-    var txt = text.match(xtxt);
-    
+    var xtxt = xtext.match(/xtxt/gi);
+
     if(buscar != null && blog != null) {
         var query = "";
 
         //sendMessage(recipientId, message);
         if(xtxt != null) {
-            query = " "+ txt +" ";
-        } 
+            query = xtext;
+        }
         sendButtonMessage(recipientId, query);
         return true
     }
@@ -74,11 +71,11 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Resultados de "+text+":",
+          text: "Resultados de "+query+":",
           buttons:[{
             type: "web_url",
-            url: "https://platzi.com/blog/?s="+text,
-            title: "Platzi: " + text
+            url: "https://platzi.com/blog/?s="+query,
+            title: "Platzi: " + query
           }]
         }
       }
