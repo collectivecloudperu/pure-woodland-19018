@@ -53,7 +53,6 @@ function newResponse(recipientId, text) {
     var javascript = text.match(/javascript/gi);
     var python = text.match(/python/gi);
     var ruby = text.match(/ruby/gi);
-    var testimonios = text.match(/testimonios/gi);
 
     if(buscar != null && blog != null) {
         var query = "";
@@ -71,8 +70,6 @@ function newResponse(recipientId, text) {
             query = "Python";
         } else if (ruby != null) {
             query = "Ruby";
-        } else if (testimonios != null) {
-            query = "https://platzi.com/historias/";
         }
         sendButtonMessage(recipientId, query);
         return true
@@ -135,6 +132,7 @@ function introResponse(recipientId, text) {
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
+    var testimonios = text.match(/testimonios/gi);
 
     if(sobre != null && platzi != null) {
         message = {
@@ -150,7 +148,24 @@ function introResponse(recipientId, text) {
         sendMessage(recipientId, message);
         return true;
     }
-    
+    if(testimonios != null) {
+        message: {
+          attachment: {
+            type: "template",
+            payload: {
+              template_type: "button",
+              text: "Testimonios:",
+              buttons:[{
+                type: "web_url",
+                url: "https://platzi.com/historias/",
+                title: "historias:"
+              }]
+            }
+          }
+        }
+        sendMessage(recipientId, message);
+        return true;
+    }
     return false;
 };
 
