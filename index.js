@@ -132,6 +132,12 @@ function introResponse(recipientId, text) {
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
     var testimonios = text.match(/testimonios/gi);
+    var buscar = text.match(/buscar/gi);
+    var ux = text.match(/ux/gi);
+    var blog = text.match(/blog/gi);
+    var php = text.match(/php/gi);
+    var android = text.match(/android/gi);
+
 
     if(sobre != null && platzi != null) {
         message = {
