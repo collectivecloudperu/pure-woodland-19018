@@ -53,10 +53,9 @@ function newResponse(recipientId, text) {
     var javascript = text.match(/javascript/gi);
     var python = text.match(/python/gi);
     var ruby = text.match(/ruby/gi);
-    var xtxt = text.match(/text/gi);
-
     if(buscar != null && blog != null) {
         var query = "";
+        var quitar_txt = "busca blog ";
 
         //sendMessage(recipientId, message);
         if(android != null) {
@@ -71,13 +70,14 @@ function newResponse(recipientId, text) {
             query = "Python";
         } else if (ruby != null) {
             query = "Ruby";
-        } else if (xtxt != null) {
-            query = query;
         }
         sendButtonMessage(recipientId, query);
         return true
     }
-    return false;
+    else {
+        query = text.replace(quitar_txt,'');
+    }
+    //return false;
 };
 
 function sendButtonMessage(recipientId, query) {
