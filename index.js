@@ -53,7 +53,7 @@ function newResponse(recipientId, text) {
 
         //sendMessage(recipientId, message);
         if(xtxt != null) {
-            query = " Resultados ";
+            query = "Resultados";
         }
         sendButtonMessage(recipientId, query);
         return true
