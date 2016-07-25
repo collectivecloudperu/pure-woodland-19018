@@ -44,40 +44,40 @@ app.post('/webhook', function (req, res) {
 
 // Defino las palabras que puede usar el usuario dentro del Messenger para el comando 'busca blog' , ejemplo: 'buscar blog javascript'
 function newResponselnk(recipientId, text) {
-    txt = text || "";
-    var buscar = txt.match(/buscar/gi);
-    var ux = txt.match(/ux/gi);
+    text = text || "";
+    var buscar = text.match(/buscar/gi);
+    var ux = text.match(/ux/gi);
     var blog = text.match(/blog/gi);
-    var php = txt.match(/php/gi);
-    var android = txt.match(/android/gi);
-    var javascript = txt.match(/javascript/gi);
-    var python = txt.match(/python/gi);
-    var ruby = txt.match(/ruby/gi);
+    var php = text.match(/php/gi);
+    var android = text.match(/android/gi);
+    var javascript = text.match(/javascript/gi);
+    var python = text.match(/python/gi);
+    var ruby = text.match(/ruby/gi);
     if(buscar != null && blog != null) {
-        var txt_query = "";
+        var query = "";
 
         //sendMessage(recipientId, message);
         if(android != null) {
-            txt_query = "Android";
+            query = "Android";
         } else if (javascript != null) {
-            txt_query = "Javascript";
+            query = "Javascript";
         } else if (php != null) {
-            txt_query = "PHP";
+            query = "PHP";
         } else if (ux != null) {
-            txt_query = "UX";
+            query = "UX";
         } else if (python != null) {
-            txt_query = "Python";
+            query = "Python";
         } else if (ruby != null) {
-            txt_query = "Ruby";
+            query = "Ruby";
         }
-        sendButtonMessagelnk(recipientId, txt_query);
+        sendButtonMessagelnk(recipientId, query);
         return true
     }
     return false;
 };
 
 // Muestro un Boton el cual es un link al Blog de Platzi con los resultados obtenidos
-function sendButtonMessagelnk(recipientId, txt_query) {
+function sendButtonMessagelnk(recipientId, query) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -87,11 +87,11 @@ function sendButtonMessagelnk(recipientId, txt_query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Resultados de "+txt_query+":",
+          text: "Resultados de "+query+":",
           buttons:[{
             type: "web_url",
-            url: "https://platzi.com/blog/?s="+txt_query,
-            title: "Platzi: " + txt_query
+            url: "https://platzi.com/blog/?s="+query,
+            title: "Platzi: " + query
           }]
         }
       }
