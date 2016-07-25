@@ -44,40 +44,40 @@ app.post('/webhook', function (req, res) {
 
 // Defino las palabras que puede usar el usuario dentro del Messenger para el comando 'busca blog' , ejemplo: 'buscar blog javascript'
 function newResponse(recipientId, text) {
-    text = text || "";
-    var buscar = text.match(/buscar/gi);
-    var ux = text.match(/ux/gi);
+    txt = text || "";
+    var buscar = txt.match(/buscar/gi);
+    var ux = txt.match(/ux/gi);
     var blog = text.match(/blog/gi);
-    var php = text.match(/php/gi);
-    var android = text.match(/android/gi);
-    var javascript = text.match(/javascript/gi);
-    var python = text.match(/python/gi);
-    var ruby = text.match(/ruby/gi);
+    var php = txt.match(/php/gi);
+    var android = txt.match(/android/gi);
+    var javascript = txt.match(/javascript/gi);
+    var python = txt.match(/python/gi);
+    var ruby = txt.match(/ruby/gi);
     if(buscar != null && blog != null) {
-        var query = "";
+        var txt_query = "";
 
         //sendMessage(recipientId, message);
         if(android != null) {
-            query = "Android";
+            txt_query = "Android";
         } else if (javascript != null) {
-            query = "Javascript";
+            txt_query = "Javascript";
         } else if (php != null) {
-            query = "PHP";
+            txt_query = "PHP";
         } else if (ux != null) {
-            query = "UX";
+            txt_query = "UX";
         } else if (python != null) {
-            query = "Python";
+            txt_query = "Python";
         } else if (ruby != null) {
-            query = "Ruby";
+            txt_query = "Ruby";
         }
-        sendButtonMessage(recipientId, query);
+        sendButtonMessage(recipientId, txt_query);
         return true
     }
     return false;
 };
 
 // Muestro un Boton el cual es un link al Blog de Platzi con los resultados obtenidos
-function sendButtonMessage(recipientId, query) {
+function sendButtonMessage(recipientId, txt_query) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -87,11 +87,11 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Resultados de "+query+":",
+          text: "Resultados de "+txt_query+":",
           buttons:[{
             type: "web_url",
-            url: "https://platzi.com/blog/?s="+query,
-            title: "Platzi: " + query
+            url: "https://platzi.com/blog/?s="+txt_query,
+            title: "Platzi: " + txt_query
           }]
         }
       }
@@ -152,7 +152,7 @@ function introResponse(recipientId, text) {
 };
 
 
-// Defino botones adicionales 'testimonio'
+// Defino el comando 'testimonios'
 function newResponse(recipientId, text) {
     text = text || "";
     var testimonios = text.match(/testimonios/gi);
@@ -170,7 +170,7 @@ function newResponse(recipientId, text) {
     return false;
 };
 
-// Muestro los botones adicionales
+// Muestro los los wildcards con los 'testimonios'
 function sendButtonMessage(recipientId, query) {
   var messageData = {
     recipient: {
