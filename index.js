@@ -5,14 +5,14 @@ var app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.listen((process.env.PORT || 8080));
+app.listen((process.env.PORT || 8080)); // Indispensable colocar el puerto 8080 para correr la aplicación en heroku
 
-// Server frontpage
+// Imprimo un texto en el home de mi servidor Heroku para comprobar si mi deployment se hizo correctamente
 app.get('/', function (req, res) {
     res.send('Hola soy un Bot de Facebook Messenger :)');
 });
 
-// Facebook Webhook
+// Conecto a mi Facebook Webhook
 app.get('/webhook', function (req, res) {
     if (req.query['hub.verify_token'] === 'testbot_verify_token') {
         res.send(req.query['hub.challenge']);
@@ -21,7 +21,7 @@ app.get('/webhook', function (req, res) {
     }
 });
 
-// handler receiving messages
+// Le muestro un mensaje de ayuda para usar el bot
 app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
@@ -34,8 +34,7 @@ app.post('/webhook', function (req, res) {
                 res.sendStatus(200);
             }
             else {
-              //replace echo with valid command list
-                //sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+              //Si el usuario escribe un mensaje le muestro una guia de uso del bot
                 sendMessage(event.sender.id, {text: "Por favor escribe el comando 'ayuda' (sin las comillas), para Ver los Comandos disponibles."});
             }
         }
@@ -43,6 +42,7 @@ app.post('/webhook', function (req, res) {
     res.sendStatus(200);
 });
 
+// Defino las palabras que puede usar el usuario dentro del Messenger para el comando 'busca blog' , ejemplo: 'buscar blog javascript'
 function newResponse(recipientId, text) {
     text = text || "";
     var buscar = text.match(/buscar/gi);
@@ -76,6 +76,7 @@ function newResponse(recipientId, text) {
     return false;
 };
 
+// Muestro un Boton el cual es un link al Blog de Platzi con los resultados obtenidos
 function sendButtonMessage(recipientId, query) {
   var messageData = {
     recipient: {
@@ -100,6 +101,7 @@ function sendButtonMessage(recipientId, query) {
   callSendAPI(messageData);
 }
 
+// Valido la conexion a la Graph API de Facebook
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
@@ -122,18 +124,13 @@ function callSendAPI(messageData) {
   });  
 }
 
+// Defino las respuestas para los comandos 'sobre platzi' y 'ayuda'
 function introResponse(recipientId, text) {
     text = text || "";
-    //split text into words for conditional responses
-    //var values = text.split(" ");
+
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
-    var buscar = text.match(/buscar/gi);
-    var ux = text.match(/ux/gi);
-    var blog = text.match(/blog/gi);
-    var php = text.match(/php/gi);
-    var android = text.match(/android/gi);
 
     if(sobre != null && platzi != null) {
         message = {
