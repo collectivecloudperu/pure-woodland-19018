@@ -53,6 +53,8 @@ function newResponse(recipientId, text) {
     var javascript = text.match(/javascript/gi);
     var python = text.match(/python/gi);
     var ruby = text.match(/ruby/gi);
+    var testimonios = text.match(/testimonios/gi);
+
     if(buscar != null && blog != null) {
         var query = "";
 
@@ -69,6 +71,8 @@ function newResponse(recipientId, text) {
             query = "Python";
         } else if (ruby != null) {
             query = "Ruby";
+        } else if (testimonios != null) {
+            query = "https://platzi.com/historias/";
         }
         sendButtonMessage(recipientId, query);
         return true
@@ -131,7 +135,6 @@ function introResponse(recipientId, text) {
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
-    var testimonios = text.match(/testimonios/gi);
 
     if(sobre != null && platzi != null) {
         message = {
@@ -142,18 +145,12 @@ function introResponse(recipientId, text) {
     }
     if(ayuda != null) {
         message = {
-            text: "Platzi Bot Ver. 1.0 "+ "\n" +" Comandos disponibles: "+ "\n" +" 1)Buscar blog Javascript, etc.(Puedes buscar Android, Javascript, PHP, UX, Python, Ruby) "+ "\n" +" 2)Sobre Platzi. "+ "\n" +" 3)Ayuda."
+            text: "Platzi Bot Ver. 1.0 "+ "\n" +" Comandos disponibles: "+ "\n" +" 1)Buscar blog Javascript, etc.(Puedes buscar Android, Javascript, PHP, UX, Python, Ruby) "+ "\n" +" 2)Sobre Platzi. "+ "\n" +" 3)Testimonios. "+ "\n" +" 4)Ayuda."
         }
         sendMessage(recipientId, message);
         return true;
     }
-    if(testimonios != null) {
-        message = {
-            text: "https://platzi.com/historias/"
-        }
-        sendMessage(recipientId, message);
-        return true;
-    }
+    
     return false;
 };
 
