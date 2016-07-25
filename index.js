@@ -131,7 +131,7 @@ function introResponse(recipientId, text) {
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
-    var testimonios = testimonios.text.match(/testimonios/gi);
+    var testimonios = text.match(/testimonios/gi);
 
     if(sobre != null && platzi != null) {
         message = {
