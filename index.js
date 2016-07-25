@@ -86,11 +86,11 @@ function sendButtonMessage(recipientId, query) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Resultados de "+query+":",
+          text: "Resultados de "+text+":",
           buttons:[{
             type: "web_url",
             url: "https://platzi.com/blog/?s="+query,
-            title: "Platzi: " + query
+            title: "Platzi: " + text
           }]
         }
       }
