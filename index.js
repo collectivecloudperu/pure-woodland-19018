@@ -53,7 +53,6 @@ function newResponse(recipientId, text) {
     var javascript = text.match(/javascript/gi);
     var python = text.match(/python/gi);
     var ruby = text.match(/ruby/gi);
-
     if(buscar != null && blog != null) {
         var query = "";
 
@@ -125,7 +124,7 @@ function callSendAPI(messageData) {
   });  
 }
 
-// Defino las respuestas para los comandos 'sobre platzi', 'ayuda', 'testimonios'
+// Defino las respuestas para los comandos 'sobre platzi', 'ayuda'
 function introResponse(recipientId, text) {
     text = text || "";
 
@@ -148,28 +147,55 @@ function introResponse(recipientId, text) {
         sendMessage(recipientId, message);
         return true;
     }
+    
+    return false;
+};
+
+
+// Defino botones adicionales 'testimonio'
+function newResponse(recipientId, text) {
+    text = text || "";
+    var testimonios = text.match(/testimonios/gi);
+
     if(testimonios != null) {
-        message: {
-          attachment: {
-            type: "template",
-            payload: {
-              template_type: "button",
-              text: "Testimonios:",
-              buttons:[{
-                type: "web_url",
-                url: "https://platzi.com/historias/",
-                title: "historias:"
-              }]
-            }
-          }
-        }
-        sendMessage(recipientId, message);
-        return true;
+        var query = "";
+
+        //sendMessage(recipientId, message);
+        if(testimonios != null) {
+            query = "Historias";
+        } 
+        sendButtonMessage(recipientId, query);
+        return true
     }
     return false;
 };
 
-// generic function sending messages
+// Muestro los botones adicionales
+function sendButtonMessage(recipientId, query) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Testimonios:",
+          buttons:[{
+            type: "web_url",
+            url: "https://platzi.com/historias/",
+            title: "Historias"
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+
+// Envio mensajes en el Messenger
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
