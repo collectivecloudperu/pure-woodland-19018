@@ -53,8 +53,6 @@ function newResponse(recipientId, text) {
     var javascript = text.match(/javascript/gi);
     var python = text.match(/python/gi);
     var ruby = text.match(/ruby/gi);
-    var xtxt = text.match(text);
-
     if(buscar != null && blog != null) {
         var query = "";
 
@@ -71,8 +69,6 @@ function newResponse(recipientId, text) {
             query = "Python";
         } else if (ruby != null) {
             query = "Ruby";
-        } else if (xtxt != null) {
-            query = "";
         }
         sendButtonMessage(recipientId, query);
         return true
