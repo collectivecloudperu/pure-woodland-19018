@@ -191,9 +191,9 @@ function sendButtonMessage(recipientId, query) {
                         "url": "https://platzi.com/historias/me-ayudo-a-crecer-y-a-aprender-mas-de-lo-que-ya-sabia/",
                         "title": "Leer más (+)"
                     }, {
-                        "type": "postback",
-                        "title": "Ver más Historias...",
-                        "payload": "platzi.com/historias",
+                        "type": "web_url",
+                        "url": "platzi.com/historias",
+                        "title": "Ver más Historias..."
                     }],
                 }, {
                     "title": "Second card",
