@@ -75,7 +75,7 @@ function newResponse(recipientId, text) {
     }
     //return false;
     else {
-        query = var text;
+        query = text;
     }
 };
 
