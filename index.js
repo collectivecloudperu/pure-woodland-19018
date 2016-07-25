@@ -179,15 +179,24 @@ function sendButtonMessage(recipientId, query) {
     message: {
       attachment: {
         type: "template",
-        payload: {
-          template_type: "button",
-          text: "Testimonios:",
-          buttons:[{
-            type: "web_url",
-            url: "https://platzi.com/historias/",
-            title: "Historias"
-          }]
-        }
+        "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "First card",
+                    "subtitle": "Element #1 of an hscroll",
+                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                    
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://www.messenger.com",
+                        "title": "web url"
+                    }, {
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "Payload for first element in a generic bubble",
+                    }],
+                }]
+            }
       }
     }
   };  
