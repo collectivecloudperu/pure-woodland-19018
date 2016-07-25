@@ -55,7 +55,6 @@ function newResponse(recipientId, text) {
     var ruby = text.match(/ruby/gi);
     if(buscar != null && blog != null) {
         var query = "";
-        var quitar_txt = "busca blog ";
 
         //sendMessage(recipientId, message);
         if(android != null) {
@@ -74,10 +73,7 @@ function newResponse(recipientId, text) {
         sendButtonMessage(recipientId, query);
         return true
     }
-    else {
-        query = text.replace(quitar_txt,'');
-    }
-    //return false;
+    return false;
 };
 
 function sendButtonMessage(recipientId, query) {
@@ -129,7 +125,7 @@ function callSendAPI(messageData) {
 function introResponse(recipientId, text) {
     text = text || "";
     //split text into words for conditional responses
-    //var values = text.split(" ");
+    var values = text.split(" ");
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
