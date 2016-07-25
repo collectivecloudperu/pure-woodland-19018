@@ -35,7 +35,7 @@ app.post('/webhook', function (req, res) {
             }
             else {
               //replace echo with valid command list
-                sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+                sendMessage(event.sender.id, {text: "Por favor escribe 'ayuda' (sin las comillas), para Ver los Comandos disponibles." + event.message.text});
             }
         }
     }
