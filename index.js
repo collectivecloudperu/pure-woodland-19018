@@ -182,13 +182,13 @@ function sendButtonMessage(recipientId, query) {
         "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "Platzi me ayudó a crecer y a aprender más de lo que ya sabía.",
-                    "subtitle": "Soy Vicky O’Shee de Argentina, trabajo como emprendedora digital ahora radicada en Medellín, Colombia...",
-                    "image_url": "https://static.platzi.com/static/stories/images/victoria-card.98c35c8ac6af.jpg",
+                    "title": "La Receta para mantenerse actualizado.",
+                    "subtitle": "Es increíble cómo la formación profesional técnica puede motivarte a participar y aportar en el proceso de...",
+                    "image_url": "https://static.platzi.com/static/stories/images/gollum-card.3cbc54914d6f.png",
                     
                     "buttons": [{
                         "type": "web_url",
-                        "url": "https://platzi.com/historias/me-ayudo-a-crecer-y-a-aprender-mas-de-lo-que-ya-sabia/",
+                        "url": "https://platzi.com/historias/la-receta-para-mantenerse-actualizado/",
                         "title": "Leer más (+)"
                     }, {
                         "type": "web_url",
