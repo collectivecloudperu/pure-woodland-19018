@@ -57,10 +57,19 @@ function newResponse(recipientId, text) {
         var query = "";
 
         //sendMessage(recipientId, message);
-        if(text != null) {
-            query = text;
-        } else {
-            query = text;
+        if(android != null) {
+            query = "Android";
+        } else if (javascript != null) {
+            query = "Javascript";
+        } else if (php != null) {
+            query = "PHP";
+        } else if (ux != null) {
+            query = "UX";
+        } else if (python != null) {
+            query = "Python";
+        } else if (ruby != null) {
+            query = "Ruby";
+        }
         sendButtonMessage(recipientId, query);
         return true
     }
