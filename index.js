@@ -182,18 +182,18 @@ function sendButtonMessage(recipientId, query) {
         "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                    "title": "Platzi me ayudó a crecer y a aprender más de lo que ya sabía.",
+                    "subtitle": "Soy Vicky O’Shee de Argentina, trabajo como emprendedora digital ahora radicada en Medellín, Colombia...",
+                    "image_url": "https://static.platzi.com/static/stories/images/victoria-card.98c35c8ac6af.jpg",
                     
                     "buttons": [{
                         "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
+                        "url": "https://platzi.com/historias/",
+                        "title": "Historias"
                     }, {
                         "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
+                        "title": "Ver (+)",
+                        "payload": "platzi.com/historias",
                     }],
                 }]
             }
