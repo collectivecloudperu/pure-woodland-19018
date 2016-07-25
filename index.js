@@ -196,13 +196,18 @@ function sendButtonMessage(recipientId, query) {
                         "title": "Ver más Historias..."
                     }],
                 }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "title": "Platzi me ayudó a crecer y a aprender más de lo que ya sabía.",
+                    "subtitle": "Soy Vicky O’Shee de Argentina, trabajo como emprendedora digital ahora radicada en Medellín, Colombia...",
+                    "image_url": "https://static.platzi.com/static/stories/images/victoria-card.98c35c8ac6af.jpg",
+                    
                     "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
+                        "type": "web_url",
+                        "url": "https://platzi.com/historias/me-ayudo-a-crecer-y-a-aprender-mas-de-lo-que-ya-sabia/",
+                        "title": "Leer más (+)"
+                    }, {
+                        "type": "web_url",
+                        "url": "platzi.com/historias",
+                        "title": "Ver más Historias..."
                     }],
                 }]
             }
