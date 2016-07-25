@@ -44,32 +44,20 @@ app.post('/webhook', function (req, res) {
 });
 
 function newResponse(recipientId, text) {
-    text = text || "";
+    xtxt = text || "";
     var buscar = text.match(/buscar/gi);
-    var ux = text.match(/ux/gi);
+   
     var blog = text.match(/blog/gi);
-    var php = text.match(/php/gi);
-    var android = text.match(/android/gi);
-    var javascript = text.match(/javascript/gi);
-    var python = text.match(/python/gi);
-    var ruby = text.match(/ruby/gi);
+
+    var txt = text.match(xtxt);
+    
     if(buscar != null && blog != null) {
         var query = "";
 
         //sendMessage(recipientId, message);
-        if(android != null) {
-            query = "Android";
-        } else if (javascript != null) {
-            query = "Javascript";
-        } else if (php != null) {
-            query = "PHP";
-        } else if (ux != null) {
-            query = "UX";
-        } else if (python != null) {
-            query = "Python";
-        } else if (ruby != null) {
-            query = "Ruby";
-        }
+        if(xtxt != null) {
+            query = text;
+        } 
         sendButtonMessage(recipientId, query);
         return true
     }
@@ -125,7 +113,7 @@ function callSendAPI(messageData) {
 function introResponse(recipientId, text) {
     text = text || "";
     //split text into words for conditional responses
-    var values = text.split(" ");
+    //var values = text.split(" ");
     var sobre = text.match(/sobre/gi);
     var platzi = text.match(/platzi/gi);
     var ayuda = text.match(/ayuda/gi);
