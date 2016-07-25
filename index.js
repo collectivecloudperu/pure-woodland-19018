@@ -70,7 +70,7 @@ function newResponselnk(recipientId, text) {
         } else if (ruby != null) {
             txt_query = "Ruby";
         }
-        sendButtonMessage(recipientId, txt_query);
+        sendButtonMessagelnk(recipientId, txt_query);
         return true
     }
     return false;
