@@ -188,11 +188,11 @@ function sendButtonMessage(recipientId, query) {
                     
                     "buttons": [{
                         "type": "web_url",
-                        "url": "https://platzi.com/historias/",
-                        "title": "Historias"
+                        "url": "https://platzi.com/historias/me-ayudo-a-crecer-y-a-aprender-mas-de-lo-que-ya-sabia/",
+                        "title": "Leer más (+)"
                     }, {
                         "type": "postback",
-                        "title": "Ver (+)",
+                        "title": "Ver más Historias...",
                         "payload": "platzi.com/historias",
                     }],
                 }]
